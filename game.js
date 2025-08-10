@@ -91,7 +91,8 @@ let state = {
     particles: [],
     popping: [],
     falling: [],
-    trail: []
+    trail: [],
+    started: false
 };
 
 function initGrid() {
@@ -415,7 +416,7 @@ function shade(col, amt) {
 
 function gameLoop(ts) {
     if (!state.lastTime) state.lastTime = ts; const dt = (ts - state.lastTime) / 1000; state.lastTime = ts;
-    if (!state.gameOver) update(dt);
+    if (state.started && !state.gameOver) update(dt);
     draw();
     requestAnimationFrame(gameLoop);
 }
@@ -428,7 +429,7 @@ function endGame(win) {
 }
 
 function startGame() {
-    state.grid = []; state.projectiles = []; state.score = 0; state.shots = 0; state.gameOver = false; state.lastTime = 0; state.spawnTimer = 0; state.particles = []; state.popping = []; state.falling = []; state.trail = [];
+    state.grid = []; state.projectiles = []; state.score = 0; state.shots = 0; state.gameOver = false; state.lastTime = 0; state.spawnTimer = 0; state.particles = []; state.popping = []; state.falling = []; state.trail = []; state.started = true;
     initGrid();
     scoreEl.textContent = '0'; shotsEl.textContent = '0'; overlay.classList.remove('show'); state.nextColor = pickColor();
 }
