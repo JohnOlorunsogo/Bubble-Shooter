@@ -172,6 +172,7 @@ function clusterCheck(origin) {
         // animate pop
         for (const b of cluster) {
             b.removing = true;
+            b.popStart = performance.now();
             state.popping.push({ x: b.x, y: b.y, color: b.color, start: performance.now() });
             spawnParticles(b.x, b.y, b.color);
         }
@@ -262,6 +263,23 @@ function update(dt) {
     // Update popping animations
     const now = performance.now();
     state.popping = state.popping.filter(pop => (now - pop.start) < CONFIG.popDuration);
+
+    // Remove bubbles whose pop animation finished
+    let removedAny = false;
+    for (let r = 0; r < state.grid.length; r++) {
+        const rowArr = state.grid[r];
+        for (let i = rowArr.length - 1; i >= 0; i--) {
+            const b = rowArr[i];
+            if (b.removing && b.popStart && (now - b.popStart) >= CONFIG.popDuration) {
+                rowArr.splice(i, 1);
+                removedAny = true;
+            }
+        }
+    }
+    if (removedAny) {
+        // After removals, check for newly floating bubbles
+        floatingCheck();
+    }
 
     // Update falling bubbles physics
     for (const f of state.falling) {
