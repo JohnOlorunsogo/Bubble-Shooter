@@ -17,6 +17,7 @@
                 <div>Score: <span id="score">0</span></div>
                 <div>Shots: <span id="shots">0</span></div>
                 <div>Rows: <span id="rows">0</span></div>
+                <div>Best: <span id="highScore">0</span></div>
                 <button id="resetBtn" class="ghost" aria-label="Restart" title="Restart">↻</button>
             </div>
         </header>
@@ -36,7 +37,8 @@
         <footer class="footer">Lightweight Vanilla JS • <a href="https://example.com" target="_blank"
                 rel="noopener">You</a></footer>
     </div>
-    <script type="module" src="game.js"></script>
+    <!-- Removed type="module" so it works over file:// without CORS issues -->
+    <script src="game.js"></script>
 </body>
 
 </html>
