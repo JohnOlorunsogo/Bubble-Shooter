@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Bubble Shooter</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="description" content="Lightweight modern Bubble Shooter web game" />
+</head>
+
+<body>
+    <div id="app">
+        <header class="top-bar">
+            <h1>Bubble Shooter</h1>
+            <div class="stats">
+                <div>Score: <span id="score">0</span></div>
+                <div>Shots: <span id="shots">0</span></div>
+                <div>Rows: <span id="rows">0</span></div>
+                <button id="resetBtn" class="ghost" aria-label="Restart" title="Restart">↻</button>
+            </div>
+        </header>
+        <main>
+            <div class="canvas-wrapper">
+                <canvas id="game" width="480" height="640" role="img" aria-label="Bubble Shooter Game Area"></canvas>
+                <div id="overlay" class="overlay show">
+                    <div class="panel">
+                        <h2>Bubble Shooter</h2>
+                        <p>Clear all bubbles. Aim with mouse / touch. Click or tap to shoot. Match 3+ of the same color
+                            to pop them. Avoid letting bubbles reach the bottom.</p>
+                        <button id="startBtn" class="primary">Start Game</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">Lightweight Vanilla JS • <a href="https://example.com" target="_blank"
+                rel="noopener">You</a></footer>
+    </div>
+    <script type="module" src="game.js"></script>
+</body>
+
+</html>
